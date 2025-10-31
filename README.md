@@ -104,44 +104,58 @@ GOOGLE_SHEET_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?for
 
 # Nombre de tu restaurante (aparecerá en toda la aplicación)
 RESTAURANT_NAME=Mi Restaurante
+
+# Subtítulo/descripción del restaurante (aparece debajo del nombre)
+RESTAURANT_SUBTITLE=Cocina Mediterránea
 ```
 
 **Variables disponibles:**
 - `GOOGLE_SHEET_URL`: URL pública de tu Google Sheet en formato CSV
 - `RESTAURANT_NAME`: Nombre de tu restaurante (reemplaza "Menu Digital")
+- `RESTAURANT_SUBTITLE`: Subtítulo o descripción del restaurante (reemplaza "Restaurante")
 
 ### 3. Agregar tu logo
 
 1. Guarda tu logo como `logo.jpeg` en la carpeta `/public/`
-2. El logo aparecerá en dos lugares:
-   - **Header principal**: Logo prominente en la parte superior de la página
-   - **Fondo sutil**: Logo semitransparente como marca de agua de fondo
+2. El logo aparecerá como **fondo elegante de toda la página**:
+   - Logo centrado con opacidad sutil que no interfiere con la lectura
+   - Efecto fijo que se mantiene mientras se hace scroll
+   - Tamaño responsive que se adapta a diferentes pantallas
 3. El sistema está optimizado para diferentes tamaños de pantalla
-4. El logo tiene efectos hover y sombra para mejor presentación
+4. El logo se muestra con overlay semitransparente para mantener la legibilidad
 
 **Recomendaciones para el logo:**
 - Formato: JPEG de buena calidad
-- Tamaño recomendado: Mínimo 400x400px
-- Fondo transparente o que contraste bien con fondo blanco
-- El logo debe ser legible y representativo de tu marca
+- Tamaño recomendado: Mínimo 400x400px (ideal 800x800px)
+- Preferible con fondo transparente o colores suaves
+- El logo debe tener buen contraste para verse bien como fondo sutil
+- Evitar logos muy detallados, funcionan mejor diseños simples e icónicos
 
-### 4. Personalizar el nombre del restaurante
+### 4. Personalizar el nombre y subtítulo del restaurante
 
-El nombre del restaurante se configura automáticamente desde la variable de entorno `RESTAURANT_NAME`. 
+El nombre y subtítulo del restaurante se configuran automáticamente desde las variables de entorno `RESTAURANT_NAME` y `RESTAURANT_SUBTITLE`. 
 
-**Para cambiar el nombre:**
+**Para cambiar el nombre y subtítulo:**
 1. Edita el archivo `.env.local`
-2. Cambia el valor de `RESTAURANT_NAME`:
+2. Cambia los valores según tu restaurante:
 ```env
 RESTAURANT_NAME=Pizzería Don Luigi
+RESTAURANT_SUBTITLE=Auténtica Cocina Italiana
 ```
-3. El nombre aparecerá automáticamente en:
+3. Los valores aparecerán automáticamente en:
    - Título de la página web
-   - Header principal
+   - Header principal (nombre y subtítulo)
    - Footer
    - Metadatos SEO
 
-**Nota:** No necesitas editar código, solo la variable de entorno.
+**Ejemplos de subtítulos:**
+- `Cocina Mediterránea`
+- `Especialidades Argentinas`
+- `Bar & Restaurant`
+- `Comida Casera`
+- `Parrilla y Mariscos`
+
+**Nota:** No necesitas editar código, solo las variables de entorno.
 
 ## 🔧 Desarrollo Local
 
@@ -172,6 +186,10 @@ La aplicación estará disponible en `http://localhost:3000`
 3. En la configuración de **Environment Variables**, agrega:
    - **Nombre**: `GOOGLE_SHEET_URL`
    - **Valor**: `https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0`
+   - **Nombre**: `RESTAURANT_NAME`
+   - **Valor**: `Tu Nombre de Restaurante`
+   - **Nombre**: `RESTAURANT_SUBTITLE`
+   - **Valor**: `Tu Descripción del Restaurante`
 
 ### 3. Deploy
 
