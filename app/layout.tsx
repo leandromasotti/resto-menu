@@ -15,13 +15,17 @@ export const metadata: Metadata = {
   description: `Menú digital de ${restaurantName} actualizado en tiempo real. Escanea el QR para ver nuestras especialidades y precios actuales.`,
   keywords: ["menu", "restaurante", "comida", "digital", "QR", restaurantName.toLowerCase()],
   authors: [{ name: restaurantName }],
-  viewport: "width=device-width, initial-scale=1.0",
   robots: "index, follow",
   openGraph: {
     title: `${restaurantName} - Menú Digital`,
     description: `Descubre el menú de ${restaurantName}`,
     type: "website",
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
 };
 
 export default function RootLayout({
