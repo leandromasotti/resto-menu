@@ -1,0 +1,219 @@
+# Menu Digital 🍽️
+
+Una aplicación web responsive para mostrar el menú de un restaurante, conectada a Google Sheets para actualizaciones en tiempo real sin necesidad de redeploy.
+
+## 🚀 Características
+
+- **Actualización automática**: Se conecta a Google Sheets para cargar datos dinámicamente
+- **ISR (Incremental Static Regeneration)**: Los datos se revalidan cada 5 minutos automáticamente
+- **Diseño responsive**: Optimizado para dispositivos móviles (ideal para códigos QR)
+- **Estilo minimalista**: Diseño limpio tipo carta clásica
+- **Agrupación por categorías**: Los platos se organizan automáticamente por categoría
+- **Ordenamiento inteligente**: Orden personalizable + alfabético automático
+- **Badges destacados**: Iconos para "Más Vendido" y "Mejor Precio"
+- **Configuración flexible**: Nombre del restaurante via variables de entorno
+
+## 📋 Configuración del Google Sheet
+
+### 1. Crear el Google Sheet
+
+1. Ve a [Google Sheets](https://sheets.google.com)
+2. Crea una nueva hoja de cálculo
+3. Configura las columnas exactamente así:
+
+| Titulo | Categoria | Precio | Orden | Mas Vendido | Mejor Precio |
+|--------|-----------|--------|-------|-------------|--------------|
+| Bruschetta | Entradas | 8.50 | 1 | X | |
+| Ensalada César | Entradas | 7.00 | 2 | | X |
+| Pasta Carbonara | Platos Principales | 15.50 | 1 | X | |
+| Salmón Grillado | Platos Principales | 22.00 | 2 | | |
+
+**Columnas obligatorias:** `Titulo`, `Categoria`, `Precio`
+**Columnas opcionales:** `Orden` (números), `Mas Vendido` (X), `Mejor Precio` (X)
+
+### 2. Hacer el Sheet público
+
+1. Haz clic en **"Compartir"** (botón azul en la esquina superior derecha)
+2. Cambia a **"Cualquier persona con el enlace"**
+3. Asegúrate de que el permiso sea **"Visualizador"**
+4. Copia el enlace del sheet
+
+### 3. Obtener la URL de exportación CSV
+
+Transforma la URL de tu sheet:
+
+**De:** `https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit#gid=0`
+
+**A:** `https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0`
+
+## ⚙️ Configuración del Proyecto
+
+### 1. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 2. Configurar variables de entorno
+
+1. Copia el archivo de ejemplo:
+```bash
+cp .env.example .env.local
+```
+
+2. Edita `.env.local` y configura las variables:
+```env
+# URL de tu Google Sheet (reemplaza YOUR_SHEET_ID con tu ID real)
+GOOGLE_SHEET_URL=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0
+
+# Nombre de tu restaurante (aparecerá en toda la aplicación)
+RESTAURANT_NAME=Mi Restaurante
+```
+
+**Variables disponibles:**
+- `GOOGLE_SHEET_URL`: URL pública de tu Google Sheet en formato CSV
+- `RESTAURANT_NAME`: Nombre de tu restaurante (reemplaza "Menu Digital")
+
+### 3. Agregar tu logo
+
+1. Guarda tu logo como `logo.jpeg` en la carpeta `/public/`
+2. El logo aparecerá en dos lugares:
+   - **Header principal**: Logo prominente en la parte superior de la página
+   - **Fondo sutil**: Logo semitransparente como marca de agua de fondo
+3. El sistema está optimizado para diferentes tamaños de pantalla
+4. El logo tiene efectos hover y sombra para mejor presentación
+
+**Recomendaciones para el logo:**
+- Formato: JPEG de buena calidad
+- Tamaño recomendado: Mínimo 400x400px
+- Fondo transparente o que contraste bien con fondo blanco
+- El logo debe ser legible y representativo de tu marca
+
+### 4. Personalizar el nombre del restaurante
+
+El nombre del restaurante se configura automáticamente desde la variable de entorno `RESTAURANT_NAME`. 
+
+**Para cambiar el nombre:**
+1. Edita el archivo `.env.local`
+2. Cambia el valor de `RESTAURANT_NAME`:
+```env
+RESTAURANT_NAME=Pizzería Don Luigi
+```
+3. El nombre aparecerá automáticamente en:
+   - Título de la página web
+   - Header principal
+   - Footer
+   - Metadatos SEO
+
+**Nota:** No necesitas editar código, solo la variable de entorno.
+
+## 🔧 Desarrollo Local
+
+```bash
+# Ejecutar en modo desarrollo
+npm run dev
+
+# Compilar para producción
+npm run build
+
+# Ejecutar versión de producción
+npm start
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+## 🚀 Deploy en Vercel
+
+### 1. Preparar el proyecto
+
+1. Sube tu código a GitHub
+2. Asegúrate de que tengas tu `logo.jpeg` en `/public/`
+
+### 2. Deploy en Vercel
+
+1. Ve a [vercel.com](https://vercel.com)
+2. Conecta tu repositorio de GitHub
+3. En la configuración de **Environment Variables**, agrega:
+   - **Nombre**: `GOOGLE_SHEET_URL`
+   - **Valor**: `https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0`
+
+### 3. Deploy
+
+1. Haz clic en **"Deploy"**
+2. Vercel generará una URL pública (ej: `https://tu-menu.vercel.app`)
+
+## 📱 Generar Código QR
+
+Una vez deployado:
+
+1. Usa cualquier generador de QR online (ej: [qr-code-generator.com](https://www.qr-code-generator.com/))
+2. Pega la URL de tu aplicación deployada
+3. Descarga el QR e imprímelo para tus mesas
+
+## 🔄 Actualizar el Menú
+
+Para actualizar el menú:
+
+1. Edita tu Google Sheet directamente
+2. Guarda los cambios
+3. La aplicación se actualizará automáticamente en máximo 5 minutos
+4. **No necesitas hacer redeploy**
+
+## 📁 Estructura del Proyecto
+
+```
+/
+├── app/
+│   ├── globals.css      # Estilos globales
+│   ├── layout.tsx       # Layout principal y metadatos
+│   └── page.tsx         # Página principal del menú
+├── components/
+│   ├── MenuCategoryComponent.tsx  # Componente para categorías
+│   ├── MenuItemComponent.tsx      # Componente para items
+│   └── MenuLoader.tsx             # Componente de carga
+├── lib/
+│   └── menu-data.ts     # Lógica para obtener datos del Sheet
+├── types/
+│   └── menu.ts          # Tipos TypeScript
+├── public/
+│   └── logo.jpeg        # Tu logo (agrega este archivo)
+├── .env.local           # Variables de entorno (no subir a git)
+├── .env.example         # Ejemplo de variables de entorno
+└── README.md            # Este archivo
+```
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **TailwindCSS**
+- **ISR (Incremental Static Regeneration)**
+- **Google Sheets API** (CSV export)
+
+## 🐛 Solución de Problemas
+
+### El menú no carga
+
+1. Verifica que tu Google Sheet sea público
+2. Confirma que la URL en `.env.local` sea correcta
+3. Revisa que las columnas se llamen exactamente: `Titulo`, `Categoria`, `Precio`
+
+### Los precios no se muestran bien
+
+- Asegúrate de que los precios estén en formato numérico (ej: `15.50`, no `$15.50`)
+
+### El logo no aparece
+
+- Verifica que el archivo se llame exactamente `logo.jpeg` y esté en `/public/`
+
+## 📞 Soporte
+
+Si tienes problemas o preguntas, revisa:
+
+1. Los logs de Vercel (si está deployado)
+2. La consola del navegador para errores
+3. Que tu Google Sheet tenga los datos correctos
+
+---
+
+¡Tu menú digital está listo! 🎉
