@@ -6,7 +6,7 @@ interface MenuItemComponentProps {
 }
 
 export default function MenuItemComponent({ item }: MenuItemComponentProps) {
-  const formattedPrice = item.precio.toFixed(2);
+  const formattedPrice = item.precio.toFixed(0);
 
   return (
     <div className="flex justify-between items-start py-3 border-b border-gray-200 last:border-b-0">
@@ -33,4 +33,5 @@ export default function MenuItemComponent({ item }: MenuItemComponentProps) {
       </div>
     </div>
   );
+
 }
