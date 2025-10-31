@@ -21,15 +21,51 @@ Una aplicación web responsive para mostrar el menú de un restaurante, conectad
 2. Crea una nueva hoja de cálculo
 3. Configura las columnas exactamente así:
 
-| Titulo | Categoria | Precio | Orden | Mas Vendido | Mejor Precio |
-|--------|-----------|--------|-------|-------------|--------------|
-| Bruschetta | Entradas | 8.50 | 1 | X | |
-| Ensalada César | Entradas | 7.00 | 2 | | X |
-| Pasta Carbonara | Platos Principales | 15.50 | 1 | X | |
-| Salmón Grillado | Platos Principales | 22.00 | 2 | | |
+| Titulo | Categoria | Precio | Categoria Orden | Orden | Mas Vendido | Mejor Precio |
+|--------|-----------|--------|-----------------|-------|-------------|--------------|
+| Bruschetta | Entradas | 8.50 | 1 | 1 | X | |
+| Ensalada César | Entradas | 7.00 | 1 | 2 | | X |
+| Pasta Carbonara | Platos Principales | 15.50 | 2 | 1 | X | |
+| Salmón Grillado | Platos Principales | 22.00 | 2 | 2 | | |
+| Tiramisu | Postres | 7.50 | 3 | 1 | | |
+| Cheesecake | Postres | 6.50 | 3 | 2 | | X |
 
 **Columnas obligatorias:** `Titulo`, `Categoria`, `Precio`
-**Columnas opcionales:** `Orden` (números), `Mas Vendido` (X), `Mejor Precio` (X)
+**Columnas opcionales:** `Categoria Orden` (números), `Orden` (números), `Mas Vendido` (X), `Mejor Precio` (X)
+
+### 📊 Sistema de Ordenamiento
+
+El menú utiliza un sistema de ordenamiento inteligente de dos niveles:
+
+#### 1. Orden de Categorías (`Categoria Orden`)
+- **Propósito**: Controla en qué orden aparecen las categorías en el menú
+- **Formato**: Números enteros (1, 2, 3, etc.)
+- **Funcionamiento**: 
+  - Categorías con `Categoria Orden` menor aparecen primero
+  - Categorías sin `Categoria Orden` aparecen al final en orden alfabético
+  - Todos los items de una categoría deben tener el mismo `Categoria Orden`
+
+#### 2. Orden de Items (`Orden`)
+- **Propósito**: Controla el orden de los platos dentro de cada categoría
+- **Formato**: Números enteros (1, 2, 3, etc.)
+- **Funcionamiento**:
+  - Items con `Orden` menor aparecen primero dentro de su categoría
+  - Items sin `Orden` aparecen al final en orden alfabético
+
+**Ejemplo de ordenamiento:**
+```
+📍 Entradas (Categoria Orden: 1)
+  - Bruschetta (Orden: 1)
+  - Ensalada César (Orden: 2)
+
+📍 Platos Principales (Categoria Orden: 2)  
+  - Pasta Carbonara (Orden: 1)
+  - Salmón Grillado (Orden: 2)
+
+📍 Postres (Categoria Orden: 3)
+  - Tiramisu (Orden: 1)
+  - Cheesecake (Orden: 2)
+```
 
 ### 2. Hacer el Sheet público
 
