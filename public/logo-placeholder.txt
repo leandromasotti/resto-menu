@@ -1,0 +1,2 @@
+<!-- Placeholder logo file - Replace with your actual logo.jpeg -->
+<!-- This is just a placeholder. Please add your logo.jpeg file to the /public directory -->
