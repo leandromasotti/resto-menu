@@ -7,46 +7,132 @@
 }
 
 body {
-  background: var(--background);
+  /* Gradiente Gastronómico - múltiples capas para crear ambiente cálido */
+  background: 
+    /* Gradiente principal cálido - más visible */
+    radial-gradient(circle at 25% 15%, rgba(255, 248, 220, 0.6) 0%, transparent 35%),
+    radial-gradient(circle at 75% 25%, rgba(255, 245, 230, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 40% 70%, rgba(250, 240, 215, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(255, 250, 240, 0.45) 0%, transparent 35%),
+    /* Gradiente base más pronunciado */
+    linear-gradient(135deg, #faf8f5 0%, #f8f6f0 25%, #f5f3ee 75%, #f0ede8 100%);
   color: var(--foreground);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Logo background overlay - versión mejorada */
-.logo-overlay {
-  position: fixed;
+/* Asegurar que el contenido esté correctamente posicionado */
+.relative {
+  position: relative;
+  z-index: 1;
+}
+
+/* Restaurar contenedores blancos completos */
+.bg-white {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+/* Mejoras para el logo en el header - REMOVIDO */
+
+/* Estilos adicionales para mejor presentación del logo - REMOVIDO */
+
+/* ========================================
+   ESTILOS GASTRONÓMICOS PARA HEADER Y FOOTER
+======================================== */
+
+/* Header elegante con gradiente gastronómico */
+.header-gastronomico {
+  background: linear-gradient(135deg, 
+    rgba(255, 248, 220, 0.95) 0%, 
+    rgba(255, 255, 255, 0.98) 25%, 
+    rgba(255, 250, 240, 0.95) 75%, 
+    rgba(250, 245, 235, 0.92) 100%
+  );
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-restaurante {
+  background: linear-gradient(135deg, #2c1810, #4a2c17, #1f1611);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.5px;
+}
+
+.subtitulo-restaurante {
+  color: #6b4423;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Footer gastronómico elegante */
+.footer-gastronomico {
+  background: linear-gradient(135deg, 
+    #d4af37 0%, 
+    #f4e6a1 25%, 
+    #e6d347 75%, 
+    #b8941f 100%
+  );
+  color: #2c1810;
+  box-shadow: 
+    0 -4px 20px rgba(0, 0, 0, 0.15),
+    0 -1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.footer-gastronomico::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
-  background-image: url('/logo.jpeg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center top;
-  opacity: 0.05;
-  z-index: -1;
-  pointer-events: none;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(139, 69, 19, 0.3) 25%, 
+    rgba(160, 82, 45, 0.5) 50%, 
+    rgba(139, 69, 19, 0.3) 75%, 
+    transparent 100%
+  );
 }
 
-/* Responsive adjustments for logo overlay */
-@media (max-width: 768px) {
-  .logo-overlay {
-    height: 150px;
-    opacity: 0.03;
-  }
+.footer-texto {
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* Mejoras para el logo en el header */
-.logo-container {
-  transition: transform 0.3s ease;
+.footer-link {
+  background: linear-gradient(135deg, #2c1810, #1a1a1a);
+  color: #f4e6a1;
+  border: 2px solid #2c1810;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-.logo-container:hover {
-  transform: scale(1.05);
+.footer-link:hover {
+  background: linear-gradient(135deg, #1a1a1a, #2c1810);
+  color: #ffffff;
+  border-color: #1a1a1a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos adicionales para mejor presentación del logo */
-.logo-shadow {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+/* Contenedor del menú con mejores estilos */
+.menu-container {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
 }
